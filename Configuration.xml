@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<settings>
+  <game version="v1.0" console="true">
+    <userName>testUser</userName>
+    <accountGUIDEncrypted>==@YhuqhiUYGeo8635rjU46EWrja568Erold2fd14esugFHJIrtlkshIU365hJf56saHJjs52</accountGUIDEncrypted>
+    <lastPlayed>2012-12-13Z</lastPlayed>
+    <autoUpdate enabled="true" />
+    <tutorial enabled="false" />
+    <autosave enabled="true" />
+    <touchScreen enabled="false" />
+    <GEOLoc>
+      <GPS available="false" enabled="false" />
+      <lastGPSPosition>
+        <long value="35898.1415926535" />
+        <lat value="-48964.1415926535" />
+      </lastGPSPosition>
+      <GEOradar>
+        <radius value="5" />
+        <sensitivity value="40" />
+        <radarLevel>13</radarLevel>
+        <proximityDetectorLevel>8</proximityDetectorLevel>
+      </GEOradar>
+    </GEOLoc>
+    <lastDevice>PC</lastDevice>
+  </game>
+  <servers>
+    <name type="gameServer" connectivity="default" visible="true">EU-G4598365</name>
+    <name type="accountServer" connectivity="required" visible="true">EU-A48954</name>
+    <name type="geoServer" connectivity="optional" visible="false">EU-CZ-L69725</name>
+    <port>4893</port>
+    <maxping>200</maxping>
+  </servers>
+  <graphics>
+    <display>
+      <resolution>1080p</resolution>
+      <gamma value="70" />
+      <brightness value="50" />
+      <colorblind_mode enabled="false" />
+    </display>
+    <animations>medium</animations>
+  </graphics>
+  <sound>
+    <volumeLevels>
+      <ingame>30</ingame>
+      <messanger>20</messanger>
+      <radar>70</radar>
+    </volumeLevels>
+  </sound>
+  <community>
+    <profile validated="true">
+      <level>48</level>
+      <totalHours>21</totalHours>
+      <win>36</win>
+      <loss>28</loss>
+    </profile>
+    <cardDeck>
+      <maxCardCount value="60" />
+      <trading enabled="true" lastTrade="2012-12-13Z" />
+    </cardDeck>
+  </community>
+</settings>
