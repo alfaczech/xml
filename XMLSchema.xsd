@@ -1,0 +1,287 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="settings">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="game">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="userName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:pattern value="[a-zA-Z0-9]{0,16}"/>
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element type="xs:token" name="accountGUIDEncrypted"/>
+              <xs:element type="xs:date" name="lastPlayed"/>
+              <xs:element name="autoUpdate">
+                <xs:complexType>
+                  <xs:attribute type="xs:boolean" name="enabled"/>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="tutorial">
+                <xs:complexType>
+                  <xs:attribute type="xs:boolean" name="enabled"/>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="autosave">
+                <xs:complexType>
+                  <xs:attribute type="xs:boolean" name="enabled"/>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="touchScreen">
+                <xs:complexType>
+                  <xs:attribute type="xs:boolean" name="enabled"/>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="GEOLoc">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="GPS">
+                      <xs:complexType>
+                            <xs:attribute type="xs:boolean" name="available"/>
+                            <xs:attribute type="xs:boolean" name="enabled"/>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="lastGPSPosition">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="long">
+                            <xs:complexType>
+                              <xs:attribute type="xs:double" name="value"/>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="lat">
+                            <xs:complexType>
+                              <xs:attribute type="xs:double" name="value"/>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="GEOradar">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="radius">
+                            <xs:complexType>
+                              <xs:attribute type="xs:nonNegativeInteger" name="value"/>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element name="sensitivity">
+                            <xs:complexType>
+                              <xs:attribute type="xs:nonNegativeInteger" name="value"/>
+                            </xs:complexType>
+                          </xs:element>
+                          <xs:element type="xs:nonNegativeInteger" name="radarLevel"/>
+                          <xs:element type="xs:nonNegativeInteger" name="proximityDetectorLevel"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="lastDevice">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:enumeration value="PC"/>
+                    <xs:enumeration value="touchScreenDevice"/>
+                    <xs:enumeration value="unknown"/>
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute type="xs:string" name="version"/>
+            <xs:attribute type="xs:boolean" name="console"/>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="servers">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="name" maxOccurs="unbounded" minOccurs="0">
+                <xs:complexType>
+                  <xs:simpleContent>
+                    <xs:extension base="xs:string">
+                      <xs:attribute name="type" use="required">
+                        <xs:simpleType>
+                          <xs:restriction base="xs:string">
+                            <xs:enumeration value="gameServer"/>
+                            <xs:enumeration value="accountServer"/>
+                            <xs:enumeration value="billingServer"/>
+                            <xs:enumeration value="geoServer"/>
+                            <xs:enumeration value="authenticationServer"/>
+                          </xs:restriction>
+                        </xs:simpleType>
+                      </xs:attribute>
+                      <xs:attribute name="connectivity" use="required">
+                        <xs:simpleType>
+                          <xs:restriction base="xs:string">
+                            <xs:enumeration value="default"/>
+                            <xs:enumeration value="required"/>
+                            <xs:enumeration value="optional"/>
+                            <xs:enumeration value="geoServer"/>
+                          </xs:restriction>
+                        </xs:simpleType>
+                      </xs:attribute>
+                      <xs:attribute type="xs:boolean" name="visible" use="required"/>
+                    </xs:extension>
+                  </xs:simpleContent>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="port">
+                <xs:simpleType>
+                  <xs:restriction base="xs:nonNegativeInteger">
+                    <xs:maxInclusive value="65535"/>
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="maxping">
+                <xs:simpleType>
+                  <xs:restriction base="xs:nonNegativeInteger">
+                    <xs:enumeration value="50"/>
+                    <xs:enumeration value="100"/>
+                    <xs:enumeration value="150"/>
+                    <xs:enumeration value="200"/>
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="graphics">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="display">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="resolution">
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:enumeration value="1080p"/>
+                          <xs:enumeration value="720p"/>
+                          <xs:enumeration value="480p"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="gamma">
+                      <xs:complexType>
+                        <xs:attribute name="value" default="50">
+                          <xs:simpleType>
+                            <xs:restriction base="xs:nonNegativeInteger">
+                              <xs:maxInclusive value="100"/>
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="brightness">
+                      <xs:complexType>
+                        <xs:attribute name="value" default="50">
+                          <xs:simpleType>
+                            <xs:restriction base="xs:nonNegativeInteger">
+                              <xs:maxInclusive value="100"/>
+                            </xs:restriction>
+                          </xs:simpleType>
+                        </xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="colorblind_mode">
+                      <xs:complexType>
+                        <xs:attribute type="xs:boolean" name="enabled"/>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="animations">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:enumeration value="low"/>
+                    <xs:enumeration value="medium"/>
+                    <xs:enumeration value="high"/>
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="sound">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="volumeLevels">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="ingame">
+                      <xs:simpleType>
+                        <xs:restriction base="xs:nonNegativeInteger">
+                          <xs:minInclusive value="0"/>
+                          <xs:maxInclusive value="100"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="messanger">
+                      <xs:simpleType>
+                        <xs:restriction base="xs:nonNegativeInteger">
+                          <xs:minInclusive value="0"/>
+                          <xs:maxInclusive value="100"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="radar">
+                      <xs:simpleType>
+                        <xs:restriction base="xs:nonNegativeInteger">
+                          <xs:minInclusive value="0"/>
+                          <xs:maxInclusive value="100"/>
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="community">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="profile">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="level">
+                    <xs:simpleType>
+                      <xs:restriction base="xs:nonNegativeInteger">
+                        <xs:maxInclusive value="400"/>
+                      </xs:restriction>
+                    </xs:simpleType>
+                    </xs:element>
+                    <xs:element type="xs:nonNegativeInteger" name="totalHours"/>
+                    <xs:element type="xs:nonNegativeInteger" name="win"/>
+                    <xs:element type="xs:nonNegativeInteger" name="loss"/>
+                  </xs:sequence>
+                  <xs:attribute type="xs:boolean" name="validated"/>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="cardDeck">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="maxCardCount">
+                      <xs:complexType>
+                        <xs:attribute type="xs:nonNegativeInteger" name="value"/>
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="trading">
+                      <xs:complexType>
+                        <xs:attribute type="xs:boolean" name="enabled"/>
+                        <xs:attribute type="xs:date" name="lastTrade"/>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
