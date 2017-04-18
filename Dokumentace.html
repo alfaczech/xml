@@ -1,0 +1,284 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Dokumentace semestrálního projektu z předmětu zančkovací jazyky</title>
+    
+</head>
+<body>
+    <header>
+        <h1>Dokumentace semestrální práce z předmětu Značkovací jazyky</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#nav">navigace</a></li>
+            <li><a href="#intro">Úvod</a></li>
+            <li><a href="#process">Metodika</a></li>
+            <li><a href="#elements">Popis elementů a atributů</a></li>
+            <li><a href="#transformation">Popis transformace</a></li>
+            <li><a href="#ending">Závěr</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section>
+            <article id="intro">
+                <h2>Úvod</h2>
+                <p>Semestrální práce z předmětu Značkovací jazyky se zabývá tvorbou XML dokumentu<br />
+                   popisujícího soubor do kterého smyšlená aplikace ukládá svá nastavení.<br />
+                   Součástí je také tvorba XSD schéma, XSL transformace do HTML a tato dokumentace.<br />
+                </p>
+                <p>Dokument byl vytvořen jako konfigurační soubor vymyšlené hry</p>
+            </article>
+            <article id="process">
+                <h2>Metodika</h2>
+                <p>
+                    Všechny dokumenty byly vytvořeny v programu <i>Visual Studio 2015</i>.
+                </p>
+                <p>
+                    Nejprve byl vytvořen XML dokument se jmény elementů a atributů.<br />
+                    Ten byl následně konvertován do XSD pomocí webové aplikace <a href="http://www.freeformatter.com/xsd-generator.html">Freeformater</a> v defaultním nastavení.<br />
+                    Poté byla ručně upravena celková strktura nového dokumentu XSD<br />a dokument byl doplněn o restrikce na datové typy.
+                </p>
+                <p>
+                    Na základě v předchozím kroku vytvořeného XSD bylo vygenerováno finální XML<br />
+                    pomocí webové aplikace <a href="http://xsd2xml.com">XSD2XML</a>. Některé hodnoty byly manuálně změněny.
+                </p>
+                <p>
+                    Validita těchto dvou dokumentů byla zkontrolována pomocí webového <a href="http://www.utilities-online.info/xsdvalidation/">validátoru </a>.<br />
+                    Zároveň bylo zkontrolováno, že XML dokument odpovídá XSD schématu.
+                </p>
+                <p>
+                    XSL transformace do HTML byla psána ručně. Data jsou strukturována do HTML tabulek<br />
+                    podle kategorií vyplývajících z designu XSD dokumentu.
+                </p>
+                <p>
+                    Pro XSL transformaci do JSON byl nejprve z XML vygenerován JSON soubor, který byl použit<br />
+                    jako základ pro transformaci. Všechny elementy, které obsahovaly pouze jeden atribut<br />
+                    a žádný vnořený element, byly přejmenovány podle vzoru <i>element-atribut</i>. Kategorie nastavení<br />
+                    vyplícající ze struktury dokumentu byly zabaleny do <i>for-each</i> cyklů. Validita JSON<br />
+                    souboru vytvořeného transformací byla ověřena na webovém validátoru <a href="http://json.parser.online.fr">Json Parser Online</a>
+                </p>
+                <p>
+                    Celý projekt byl nakonec nahrán na <a href="https://github.com/alfaczech/znackovaci_jazyky_czu">GitHubu</a>.
+                </p>
+            </article>
+            <p><a href="#">na začátek</a></p>
+        </section>
+        <section>
+            <h2>Popis elementů a artributů</h2>
+            <table border="1">
+                <tr>
+                    <th>Adresa elementu/atributu</th>
+                    <th>Popis</th>
+                </tr>
+                <tr>
+                    <td>settings/game/@version</td>
+                    <td>aktuální verze hry</td>
+                </tr>
+                <tr>
+                    <td>settings/game/@console</td>
+                    <td>Zapnutí/vypnutí přístupu do konzole ze hry</td>
+                </tr>
+                <tr>
+                    <td>settings/game/userName</td>
+                    <td>jméno hráče</td>
+                </tr>
+                <tr>
+                    <td>settings/game/accountGUIDEncrypted</td>
+                    <td>zašifrovaný identifikátor</td>
+                </tr>
+                <tr>
+                    <td>settings/game/lastPlayed</td>
+                    <td>datum kdy byla hra naposled zapnuta</td>
+                </tr>
+                <tr>
+                    <td>settings/game/autoUpdate/@enabled</td>
+                    <td>zapnutí/vypnutí automatického stahování aktualizací</td>
+                </tr>
+                <tr>
+                    <td>settings/game/tutorial/@enabled</td>
+                    <td>zapnutí/vypnutí turoriálu</td>
+                </tr>
+                <tr>
+                    <td>settings/game/autosave/@enabled</td>
+                    <td>zapnutí/vypnutí automatického ukládání postupu ve hře</td>
+                </tr>
+                <tr>
+                    <td>settings/game/touchScreen/@enabled</td>
+                    <td>zapnutí/vypnutí ovládání dotykovou obrazovkou</td>
+                </tr>
+                <tr>
+                    <td>settings/game/GEOLoc/GPS/@enabled</td>
+                    <td>zapnutí/vypnutí GPS</td>
+                </tr>
+                <tr>
+                    <td>settings/game/GEOLoc/GPS/@available</td>
+                    <td>kontrola přítomnosti GPS zařízení</td>
+                </tr>
+                <tr>
+                    <td>settings/game/GEOLoc/lastGPSPosition/long/@value</td>
+                    <td>poslední známe souřadnice - zeměpisná délka</td>
+                </tr>
+                <tr>
+                    <td>settings/game/GEOLoc/lastGPSPosition/lat/@value</td>
+                    <td>poslední známe souřadnice - zeměpisná šířka</td>
+                </tr>
+                <tr>
+                    <td>settings/game/GEOLoc/GEOradar/radius/@value</td>
+                    <td>kruhová vzdálenost vyhledávání radaru </td>
+                </tr>
+                <tr>
+                    <td>settings/game/GEOLoc/GEOradar/sensitivity/@value</td>
+                    <td>hladina citlivosti radaru</td>
+                </tr>
+                <tr>
+                    <td>settings/game/GEOLoc/GEOradar/radarLevel</td>
+                    <td>aktuální level radaru</td>
+                </tr>
+                <tr>
+                    <td>settings/game/GEOLoc/GEOradar/proximityDetectorLevel</td>
+                    <td>aktuální level detektoru přiblížení</td>
+                </tr>
+                <tr>
+                    <td>settings/game/lastDevice</td>
+                    <td>typ posledního používaného zařízení</td>
+                </tr>
+                <tr>
+                    <td>settings/servers/name/@type</td>
+                    <td>typ daného serveru</td>
+                </tr>
+                <tr>
+                    <td>settings/servers/name/@connectivity</td>
+                    <td>povinnost připojení k danému serveru</td>
+                </tr>
+                <tr>
+                    <td>settings/servers/name/@visible</td>
+                    <td>ciditelnost připojení serveru</td>
+                </tr>
+                <tr>
+                    <td>settings/servers/name</td>
+                    <td>název daného serveru serveru</td>
+                </tr>
+                <tr>
+                    <td>settings/servers/port</td>
+                    <td>aplikační port</td>
+                </tr>
+                <tr>
+                    <td>settings/servers/maxping</td>
+                    <td>maximální povolený ping</td>
+                </tr>
+                <tr>
+                    <td>settings/graphics/resolution</td>
+                    <td>nastavení rolišení herní obrazovky</td>
+                </tr>
+                <tr>
+                    <td>settings/graphics/gamma/@value</td>
+                    <td>nastavení gamma</td>
+                </tr>
+                <tr>
+                    <td>settings/graphics/brightness/@value</td>
+                    <td>nastavení brightness</td>
+                </tr>
+                <tr>
+                    <td>settings/graphics/colorblind_mode/@enabled</td>
+                    <td>zapnutí/vypnutí barevného módu pro lidi s barvoslepostí</td>
+                </tr>
+                <tr>
+                    <td>settings/graphics/animations</td>
+                    <td>nastavení kvality animací ve hře</td>
+                </tr>
+                <tr>
+                    <td>settings/sound/ingame</td>
+                    <td>nastavení hlasitosti během hry</td>
+                </tr>
+                <tr>
+                    <td>settings/sound/messanger</td>
+                    <td>nastavení hlasitosti notifikací messengeru</td>
+                </tr>
+                <tr>
+                    <td>settings/sound/radar</td>
+                    <td>nastavení hlasitosti notifikací radaru</td>
+                </tr>
+                <tr>
+                    <td>settings/community/profile/@validated</td>
+                    <td>ověření platnosti profilu</td>
+                </tr>
+                <tr>
+                    <td>settings/community/profile/level</td>
+                    <td>aktuální nejvyšší dosažený level profilu</td>
+                </tr>
+                <tr>
+                    <td>settings/community/profile/totalHours</td>
+                    <td>aktuální počet hodin při zapnuté hře</td>
+                </tr>
+                <tr>
+                    <td>settings/community/profile/win</td>
+                    <td>počet výher profilu</td>
+                </tr>
+                <tr>
+                    <td>settings/community/profile/loss</td>
+                    <td>počet proher profilu</td>
+                </tr>
+                <tr>
+                    <td>settings/community/cardDeck/maxCardCount</td>
+                    <td>maximální počet karet použitých pro herní balík</td>
+                </tr>
+                <tr>
+                    <td>settings/communitycardDeck/trading/@enabled</td>
+                    <td>zapnutí/vypnutí obchodování s kartami</td>
+                </tr>
+                <tr>
+                    <td>settings/community/cardDeck/trading/@lastTrade</td>
+                    <td>datum posledního obchodního transferu</td>
+                </tr>
+            </table>
+            <p>
+                <a href="#">na začátek</a>
+            </p>
+        </section>
+        <section>
+            <article id="transformation">
+                <h2>Popis transformace</h2>
+                <h3>HTML</h3>
+                <p>
+                    Data jsou transformována do HTML dokumentu. Jsou strukturována tak, jak by typicky bylo strukturováno<br />
+                    Nastavení ve hrách. Jednotlivé elementy a atributy jsou zapsány do tabulek. Všechny atributy "enabled"<br />
+                    jsou zabaleny v podmínkách, přes které se přepisují z true/false na On/Off. Transformace od HTML<br />
+                    neobsahuje všechna data z XML souboru.
+                </p>
+                <h3>JSON</h3>
+                <p>
+                    Data jsou transformována do JSON dokumentu. Jsou strukturována stejně jako výchozí XML soubor.<br />
+                    Elementy s datovým typem string jsou zapsány v úvozovkách. Číselné datové typy<br />
+                    a boolean jsou zapsnány bez úvozovek.
+                </p>
+            </article>
+            <article id="ending">
+                <h2>Závěr</h2>
+                <p>
+                    Jazyk XML je používán pro strukturované ukládání dat nebo při komunikaci mezi programy.<br />
+                    Jeho výhodou je dobrá čitelnost a široké možnosti filtrování a omezování dat a datovýh typů.<br />
+                    Práce s XML není nákladná, protože k jeho editaci stačí pouze textový editor.
+                </p>
+            </article>
+        </section>
+        <p>
+            <a href="#">na začátek</a>
+        </p>
+    </main>
+    <footer id="footer">
+        <hr>
+        <table>
+            <tr>
+                <td>Autor:</td>
+                <td>Vojtěch Šťastný</td>
+            </tr>
+            <tr>
+                <td>Cvičení:</td>
+                <td>Čtvrtek 15:45 Lichý</td>
+            </tr>
+        </table>
+    </footer>
+</body>
+</html>
